@@ -1,9 +1,12 @@
 name: Compilar EXE e Lançar Versão
 
-# Essa rotina vai rodar toda vez que você publicar um novo "Release" no GitHub
 on:
   release:
     types: [published]
+
+# VACINA DE SEGURANÇA: Dá permissão ao robô para gravar ficheiros no seu repositório
+permissions:
+  contents: write
 
 jobs:
   build:
@@ -12,12 +15,12 @@ jobs:
 
     steps:
       - name: 📥 Baixar o código do repositório
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: 🐍 Instalar o Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.11' # Ou a versão que você usa
+          python-version: '3.11'
 
       - name: 📦 Instalar Bibliotecas e PyInstaller
         run: |
@@ -26,12 +29,11 @@ jobs:
           pip install pyinstaller
 
       - name: ⚙️ Gerar o Arquivo Executável (.exe)
-        # Ajuste a linha abaixo de acordo com os comandos que você usa no PyInstaller
         run: |
           pyinstaller --noconfirm --onefile --windowed --icon "icone.ico" --add-data "icone.ico;." main.py
 
       - name: 🚀 Anexar o .exe no Release do GitHub
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           files: dist/main.exe
         env:

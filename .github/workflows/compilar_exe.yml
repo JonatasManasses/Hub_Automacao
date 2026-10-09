@@ -4,7 +4,6 @@ on:
   release:
     types: [published]
 
-# VACINA DE SEGURANÇA: Dá permissão ao robô para gravar ficheiros no seu repositório
 permissions:
   contents: write
 

@@ -1,0 +1,6 @@
+pytesseract
+PyMuPDF
+pdfplumber
+pandas
+requests
+pillow

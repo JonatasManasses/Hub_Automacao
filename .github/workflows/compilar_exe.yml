@@ -1,0 +1,38 @@
+name: Compilar EXE e Lançar Versão
+
+# Essa rotina vai rodar toda vez que você publicar um novo "Release" no GitHub
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    name: Compilar para Windows
+    runs-on: windows-latest
+
+    steps:
+      - name: 📥 Baixar o código do repositório
+        uses: actions/checkout@v3
+
+      - name: 🐍 Instalar o Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11' # Ou a versão que você usa
+
+      - name: 📦 Instalar Bibliotecas e PyInstaller
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pyinstaller
+
+      - name: ⚙️ Gerar o Arquivo Executável (.exe)
+        # Ajuste a linha abaixo de acordo com os comandos que você usa no PyInstaller
+        run: |
+          pyinstaller --noconfirm --onefile --windowed --icon "icone.ico" --add-data "icone.ico;." main.py
+
+      - name: 🚀 Anexar o .exe no Release do GitHub
+        uses: softprops/action-gh-release@v1
+        with:
+          files: dist/main.exe
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

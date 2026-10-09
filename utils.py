@@ -36,7 +36,7 @@ try:
 except ImportError:
     HAS_RPA = False
 
-VERSAO_ATUAL = "1.0.2"
+VERSAO_ATUAL = "1.0.1"
 GITHUB_REPO = "JonatasManasses/HubAutomacao" 
 APP_NAME = "Hub de Automação"
 ROOT_DIR_NFTS = "C:/RoboNFTS"

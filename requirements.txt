@@ -1,6 +1,8 @@
-pytesseract
-PyMuPDF
 pdfplumber
+PyMuPDF
+pytesseract
 pandas
+openpyxl
 requests
 pillow
+keyring

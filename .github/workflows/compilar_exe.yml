@@ -29,12 +29,17 @@ jobs:
 
       - name: ⚙️ Gerar o Arquivo Executável (.exe)
         run: |
-          pyinstaller --noconfirm --onefile --windowed --name "Hub Automação" --icon "icone.ico" --add-data "icone.ico;." main.py
+          pyinstaller --noconfirm --onefile --windowed --icon "icone.ico" --add-data "icone.ico;." main.py
+
+      - name: 🏷️ Renomear o executável
+        run: |
+          cd dist
+          ren main.exe "Hub_Automacao.exe"
 
       - name: 🚀 Anexar o .exe no Release do GitHub
         uses: softprops/action-gh-release@v2
         with:
-          files: dist/*.exe
+          files: dist/Hub_Automacao.exe
           fail_on_unmatched_files: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

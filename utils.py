@@ -36,8 +36,8 @@ try:
 except ImportError:
     HAS_RPA = False
 
-VERSAO_ATUAL = "2.9.8"
-GITHUB_REPO = "JonatasManasses/HubRobosManasses" 
+VERSAO_ATUAL = "1.0.0"
+GITHUB_REPO = "JonatasManasses/HubAutomacao" 
 APP_NAME = "Hub de Automação"
 ROOT_DIR_NFTS = "C:/RoboNFTS"
 AIRTABLE_BASE_ID = "appumhEucykyJuO7G"
